@@ -23,31 +23,13 @@ public class Salary {
         @Column(name = "from_date")
         private LocalDate fromDate;
 
-        protected SalaryId() {
+        SalaryId() {
         }
 
         public SalaryId(Integer empNo, TimeProvider timeProvider) {
             this.empNo = empNo;
             this.timeProvider = timeProvider;
             this.fromDate = timeProvider.today();
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            SalaryId salaryId = (SalaryId) o;
-
-            if (!empNo.equals(salaryId.empNo)) return false;
-            return fromDate.equals(salaryId.fromDate);
-        }
-
-        @Override
-        public int hashCode() {
-            int result = empNo.hashCode();
-            result = 31 * result + fromDate.hashCode();
-            return result;
         }
 
         public boolean startsToday() {
@@ -66,7 +48,8 @@ public class Salary {
     @Column(name = "to_date")
     private LocalDate toDate;
 
-    protected Salary() {}
+    Salary() {
+    }
 
     public Salary(Integer empNo, Integer salary, TimeProvider timeProvider) {
         id = new SalaryId(empNo, timeProvider);

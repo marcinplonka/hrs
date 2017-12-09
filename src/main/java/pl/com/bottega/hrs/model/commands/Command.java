@@ -18,4 +18,17 @@ public interface Command {
         }
     }
 
+    default void validateMinLength(ValidationErrors errors, String field, String value, int minLength) {
+        if (value != null && value.length() < minLength) {
+            errors.add(field, "min length is " + minLength);
+        }
+    }
+
+    default void validateFormat(ValidationErrors errors, String field, String value, String format) {
+        if(value != null && !value.matches(format)) {
+            errors.add(field, "invalid format");
+        }
+    }
+
+
 }

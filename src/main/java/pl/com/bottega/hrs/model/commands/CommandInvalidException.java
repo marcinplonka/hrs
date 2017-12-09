@@ -8,13 +8,6 @@ public class CommandInvalidException extends RuntimeException {
         this.validationErrors = validationErrors;
     }
 
-    public CommandInvalidException(String field, String error) {
-        this.validationErrors = new ValidationErrors();
-        this.validationErrors.add(field, error);
-
-    }
-
-
     public ValidationErrors getValidationErrors() {
         return validationErrors;
     }

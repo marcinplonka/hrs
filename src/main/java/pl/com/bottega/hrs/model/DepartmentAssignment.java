@@ -22,30 +22,13 @@ public class DepartmentAssignment {
         @JoinColumn(name = "dept_no")
         private Department department;
 
-        protected DepartmentAssignmentId() {}
+        DepartmentAssignmentId() {}
 
         public DepartmentAssignmentId(Integer empNo, Department department) {
             this.empNo = empNo;
             this.department = department;
         }
 
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            DepartmentAssignmentId that = (DepartmentAssignmentId) o;
-
-            if (!empNo.equals(that.empNo)) return false;
-            return department != null ? department.equals(that.department) : that.department == null;
-        }
-
-        @Override
-        public int hashCode() {
-            int result = empNo.hashCode();
-            result = 31 * result + (department != null ? department.hashCode() : 0);
-            return result;
-        }
     }
 
     @Transient
@@ -61,7 +44,7 @@ public class DepartmentAssignment {
     @Column(name = "to_date")
     private LocalDate toDate;
 
-    protected DepartmentAssignment() {}
+    DepartmentAssignment() {}
 
     public DepartmentAssignment(Integer empNo, Department department, TimeProvider timeProvider) {
         this.timeProvider = timeProvider;
