@@ -23,6 +23,6 @@ public class HibernateConfiguration extends HibernateJpaAutoConfiguration {
 
     @Override
     protected void customizeVendorProperties(Map<String, Object> vendorProperties) {
-        vendorProperties.put("hibernate.ejb.interceptor", injectingInterceptor);
+        vendorProperties.put("hibernate.session_factory.interceptor", injectingInterceptor);
     }
 }

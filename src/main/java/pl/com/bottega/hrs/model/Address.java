@@ -19,7 +19,7 @@ public class Address {
         this.city = city;
     }
 
-    Address() {
+    protected Address() {
     }
 
     @Override

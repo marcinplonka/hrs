@@ -26,13 +26,33 @@ public class Title {
 
         private String title;
 
-        TitleId() {}
+        protected TitleId() {}
 
         public TitleId(Employee employee, String title, TimeProvider timeProvider) {
             this.employee = employee;
             this.timeProvider = timeProvider;
             this.title = title;
             this.fromDate = timeProvider.today();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            TitleId titleId = (TitleId) o;
+
+            if (!employee.equals(titleId.employee)) return false;
+            if (!fromDate.equals(titleId.fromDate)) return false;
+            return title.equals(titleId.title);
+        }
+
+        @Override
+        public int hashCode() {
+            int result = employee.hashCode();
+            result = 31 * result + fromDate.hashCode();
+            result = 31 * result + title.hashCode();
+            return result;
         }
 
         public boolean startsToday() {
@@ -50,7 +70,7 @@ public class Title {
     @Column(name = "to_date")
     private LocalDate toDate;
 
-    Title() {}
+    protected Title() {}
 
     public Title(Employee employee, String titleName, TimeProvider timeProvider) {
         this.id = new TitleId(employee, titleName, timeProvider);

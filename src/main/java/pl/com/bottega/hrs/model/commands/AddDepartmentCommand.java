@@ -24,5 +24,4 @@ public class AddDepartmentCommand implements Command {
         validatePresence(errors,"number", number);
         validatePresence(errors,"name", name);
     }
-
 }
