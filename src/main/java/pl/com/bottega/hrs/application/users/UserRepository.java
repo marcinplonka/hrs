@@ -11,4 +11,6 @@ public interface UserRepository {
     Optional<User> get(String login);
 
     User get(Integer userId);
+
+    User get(String login, String password);
 }

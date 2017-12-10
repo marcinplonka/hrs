@@ -48,4 +48,12 @@ public class User {
             roles.addAll(command.getRoles());
         }
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Set<Role> getRoles() {
+        return new HashSet<>(roles);
+    }
 }

@@ -46,4 +46,17 @@ public class JPAUserRepository implements UserRepository {
             throw new NoSuchEntityException();
         return user;
     }
+
+    @Override
+    public User get(String login, String password) {
+        try {
+            User user = (User) entityManager.createQuery("FROM User u WHERE u.login = :login AND u.password = :password").
+                    setParameter("login", login).
+                    setParameter("password", password).
+                    getSingleResult();
+            return user;
+        } catch (NoResultException ex) {
+            throw new NoSuchEntityException();
+        }
+    }
 }
