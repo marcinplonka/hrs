@@ -6,10 +6,9 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
-
-@Component
 @Aspect
-public class TimeOfExecutionAspect {
+@Component
+public class ProfilingAspect {
 
     @Around("execution(* pl.com.bottega.hrs.application.Handler.handle(..))")
     public Object profile(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -28,7 +27,7 @@ public class TimeOfExecutionAspect {
         long te = System.currentTimeMillis();
         long t = te - ts;
         String msg = String.format("Execution %s took %s ms", joinPoint.getSignature(), t);
-        Logger.getLogger(TimeOfExecutionAspect.class).info(msg);
+        Logger.getLogger(ProfilingAspect.class).info(msg);
     }
 
 }
