@@ -16,11 +16,15 @@ public class SecurityAspect {
         this.currentUser = currentUser;
     }
 
-    @Before("@within(pl.com.bottega.hrs.infrastructure.Secured) || " +
-            "@annotation(pl.com.bottega.hrs.infrastructure.Secured)")
-    public void checkSecurity() {
-        if(!currentUser.isAuthenticated())
+    @Before("@within(secured)")
+    public void checkSecurity(Secured secured) {
+        if(!currentUser.isAuthenticated(secured.roles()))
             throw new SecurityException();
+    }
+
+    @Before("@annotation(secured)")
+    public void checkMethodSecurity(Secured secured) {
+        checkSecurity(secured);
     }
 
 }

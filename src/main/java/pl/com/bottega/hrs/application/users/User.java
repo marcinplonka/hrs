@@ -1,8 +1,10 @@
 package pl.com.bottega.hrs.application.users;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -55,5 +57,9 @@ public class User {
 
     public Set<Role> getRoles() {
         return new HashSet<>(roles);
+    }
+
+    public boolean hasRoles(Role[] requiredRoles) {
+        return roles.containsAll(Arrays.stream(requiredRoles).collect(Collectors.toList()));
     }
 }

@@ -2,9 +2,12 @@ package pl.com.bottega.hrs.ui.rest;
 
 import org.springframework.web.bind.annotation.*;
 import pl.com.bottega.hrs.application.*;
+import pl.com.bottega.hrs.application.users.Role;
+import pl.com.bottega.hrs.infrastructure.Secured;
 import pl.com.bottega.hrs.model.commands.*;
 
 @RestController
+@Secured
 public class EmployeesController {
 
     private EmployeeFinder employeeFinder;

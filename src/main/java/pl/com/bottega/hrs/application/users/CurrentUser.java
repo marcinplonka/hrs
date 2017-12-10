@@ -31,7 +31,12 @@ public class CurrentUser {
         userId = null;
     }
 
-    public boolean isAuthenticated() {
-        return userId != null;
+    public boolean isAuthenticated(Role[] requiredRoles) {
+        if(userId == null)
+            return false;
+        if(requiredRoles == null || requiredRoles.length == 0)
+            return true;
+        User user = userRepository.get(userId);
+        return user.hasRoles(requiredRoles);
     }
 }
