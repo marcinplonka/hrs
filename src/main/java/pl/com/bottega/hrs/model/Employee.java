@@ -1,8 +1,6 @@
 package pl.com.bottega.hrs.model;
 
-import org.hibernate.collection.internal.PersistentBag;
 import org.springframework.beans.factory.annotation.Autowired;
-import pl.com.bottega.hrs.infrastructure.StandardTimeProvider;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -54,6 +52,9 @@ public class Employee {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "emp_no")
     private Collection<DepartmentAssignment> departmentAssignments = new LinkedList<>();
+
+    @Version
+    private Long version;
 
     Employee() {
     }
